@@ -72,4 +72,6 @@ public class UserRoles extends Auditable implements Serializable
     {
         return Objects.hash(getUser(), getRole());
     }
+
+
 }

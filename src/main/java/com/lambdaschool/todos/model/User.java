@@ -31,8 +31,8 @@ public class User
     private List<Todo> todos = new ArrayList<>();
 
     @OneToMany(mappedBy = "user",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true)
+            cascade = CascadeType.ALL
+            )
     @JsonIgnoreProperties("user")
     private List<UserRoles> userRoles = new ArrayList<>();
 
@@ -40,10 +40,15 @@ public class User
     {
     }
 
-    public User(String username, String password, List roles) {
-        this.username = username;
-        this.password = password;
-        this.userRoles = roles;
+    public User(String username, String password, List<UserRoles> userRoles)
+    {
+        setUsername(username);
+        setPassword(password);
+        for (UserRoles ur : userRoles)
+        {
+            ur.setUser(this);
+        }
+        this.userRoles = userRoles;
     }
 
     public long getUserid() {

@@ -18,7 +18,7 @@ import javax.persistence.EntityNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
-
+@Transactional
 @Service(value = "userService")
 public class UserServiceImpl implements UserDetailsService, UserService
 {
@@ -42,6 +42,7 @@ public class UserServiceImpl implements UserDetailsService, UserService
     }
 
     @Transactional
+    @Override
     public User findUserById(long id) throws EntityNotFoundException
     {
         return userrepos.findById(id).orElseThrow(() -> new EntityNotFoundException(Long.toString(id)));
@@ -54,6 +55,7 @@ public class UserServiceImpl implements UserDetailsService, UserService
         return list;
     }
 
+    @Transactional
     @Override
     public void delete(long id)
     {
@@ -89,6 +91,7 @@ public class UserServiceImpl implements UserDetailsService, UserService
         return userrepos.save(newUser);
     }
 
+    @Transactional
     @Override
     public User findUserByName(String name)
     {

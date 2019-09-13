@@ -1,6 +1,9 @@
 package com.lambdaschool.todos.services;
 
 import com.lambdaschool.todos.model.Role;
+import com.lambdaschool.todos.model.Todo;
+import com.lambdaschool.todos.model.User;
+import com.lambdaschool.todos.model.UserRoles;
 import com.lambdaschool.todos.repository.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,6 +13,7 @@ import javax.persistence.EntityNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
+@Transactional
 @Service(value = "roleService")
 public class RoleServiceImpl implements RoleService
 {
@@ -44,6 +48,9 @@ public class RoleServiceImpl implements RoleService
     @Override
     public Role save(Role role)
     {
+//        Role newRole = new Role();
+//        newRole.setName(role.getName());
+
         return rolerepos.save(role);
     }
 }

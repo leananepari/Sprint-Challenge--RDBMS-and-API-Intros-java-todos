@@ -33,8 +33,8 @@ public class SeedData implements CommandLineRunner {
         Role r1 = new Role("admin");
         Role r2 = new Role("user");
 
-        rolerepos.save(r1);
-        rolerepos.save(r2);
+        r1 = rolerepos.save(r1);
+        r2 = rolerepos.save(r2);
 
         ArrayList<UserRoles> users = new ArrayList<>();
         users.add(new UserRoles(new User(), r2));
