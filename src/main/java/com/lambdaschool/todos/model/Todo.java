@@ -9,7 +9,7 @@ import java.util.Date;
 
 @Entity
 @Table(name = "todos")
-public class Todo
+public class Todo extends Auditable
 {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -21,19 +21,19 @@ public class Todo
     private Date datestarted;
     private Boolean completed = false;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "userid",
             nullable = false)
-    @JsonIgnoreProperties("todos")
+    @JsonIgnoreProperties({"todos", "hibernateLazyInitializer"})
     private User user;
 
     public Todo() {
     }
 
-    public Todo(String description, Date datestarted, User user) {
+    public Todo(String description, Date datestarted, boolean completed) {
         this.description = description;
         this.datestarted = datestarted;
-        this.user = user;
+        this.completed = completed;
     }
 
     public long getTodoid() {
