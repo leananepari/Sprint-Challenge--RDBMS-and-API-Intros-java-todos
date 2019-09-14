@@ -81,8 +81,8 @@ public class UserController
     public ResponseEntity<?> updateUser(@RequestBody Todo updateTodo,
                                         @PathVariable long id)
     {
-        Todo todo = todoService.findTodoById(id);
-        todoService.update(updateTodo, todo);
+
+        todoService.update(updateTodo, id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
